@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { ServerSessionButtons } from "./server-session-buttons";
 
 export default function NavBar() {
   return (
@@ -7,7 +8,7 @@ export default function NavBar() {
       {/* Logo or Site Title */}
       <div className="flex items-center space-x-2">
         <Image
-          src="/dogo.png" // Replace with your logo path
+          src="/dogo.png"
           alt="Site Logo"
           width={50}
           height={50}
@@ -39,18 +40,8 @@ export default function NavBar() {
         </Link>
       </div>
       {/* Auth Buttons */}
-      <div className="flex items-center space-x-3">
-        <Link href="/login">
-          <button className="px-4 py-1 border border-amber-700 text-amber-700 rounded hover:bg-amber-200 transition">
-            Login
-          </button>
-        </Link>
-        <Link href="/signup">
-          <button className="px-4 py-1 bg-amber-700 text-white rounded hover:bg-amber-800 transition">
-            SignUp
-          </button>
-        </Link>
-      </div>
+
+      <ServerSessionButtons />
     </nav>
   );
 }

@@ -11,7 +11,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export default function Home() {
+export default async function Home() {
   return (
     <main
       className={`${geistSans.className} ${geistMono.className} h-screen overflow-y-scroll snap-y snap-mandatory`}
@@ -62,6 +62,12 @@ export default function Home() {
         <button className="px-6 py-2 bg-amber-700 text-white rounded hover:bg-amber-800 transition">
           Escríbenos
         </button>
+      </section>
+      {/* User Info Section */}
+      <section className="h-screen snap-start flex flex-col items-center justify-center bg-amber-100">
+        <h2 className="text-4xl font-bold text-amber-900 mb-4">
+          Información de Usuario
+        </h2>
       </section>
     </main>
   );
