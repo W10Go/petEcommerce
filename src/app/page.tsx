@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,9 +34,11 @@ export default function Home() {
           Explora nuestra amplia selección de alimentos, juguetes y accesorios
           para todo tipo de mascotas.
         </p>
-        <button className="px-6 py-2 bg-amber-700 text-white rounded hover:bg-amber-800 transition">
-          Ver productos
-        </button>
+        <Link href="/shop">
+          <button className="px-6 py-2 bg-amber-700 text-white rounded hover:bg-amber-800 transition">
+            Ver productos
+          </button>
+        </Link>
       </section>
 
       {/* About Section */}
