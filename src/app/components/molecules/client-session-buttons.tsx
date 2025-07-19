@@ -13,18 +13,16 @@ export default function ClientSessionButtons({
   readonly session: User | null;
 }) {
   const [user, setUser] = useState<User | null>();
-  const supabase = createSupabaseBrowserClient();
-  console.log(user);
 
   useEffect(() => {
+    const supabase = createSupabaseBrowserClient();
+
     const fetchUser = async () => {
       const { data } = await supabase
         .from("users")
         .select("*")
         .eq("id", session?.id)
         .single();
-
-      console.log("email: ", data.email);
 
       setUser(data);
     };
@@ -34,7 +32,7 @@ export default function ClientSessionButtons({
     <>
       {session ? (
         <div className="flex">
-          <p className="text-amber-900 p-5">user?.email</p>
+          <p className="text-amber-900 p-5">{user?.email}</p>
           <UserMenu />
         </div>
       ) : (

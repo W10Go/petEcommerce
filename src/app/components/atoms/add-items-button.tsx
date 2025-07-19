@@ -10,8 +10,9 @@ type User = {
 
 export default function AddItemsButton() {
   const [user, setUser] = useState<User | null>(null);
-  const supabase = createSupabaseBrowserClient();
   useEffect(() => {
+    const supabase = createSupabaseBrowserClient();
+
     const fetchUser = async () => {
       const { data: userData } = await supabase.auth.getUser();
 
@@ -27,8 +28,6 @@ export default function AddItemsButton() {
       setUser(data);
     };
     fetchUser();
-
-    console.log(user);
   }, []);
   return (
     <div>
