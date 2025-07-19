@@ -1,19 +1,18 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { createSupabaseBrowserClient } from "@/app/components/lib/supabase-browser";
+import { redirectTo } from "../lib/navigation";
 
 export default function UserMenu() {
   const [open, setOpen] = useState(false);
-  const router = useRouter();
   const dropdownRef = useRef(null);
 
   const supabase = createSupabaseBrowserClient();
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
-    router.refresh(); // or redirect to login
+    redirectTo("/");
   };
 
   // Close dropdown on outside click
@@ -55,7 +54,7 @@ export default function UserMenu() {
           <button
             onClick={() => {
               setOpen(false);
-              router.push("/settings"); // or your settings route
+              redirectTo("/settings"); // or your settings route
             }}
             className="block w-full text-amber-500 text-left px-4 py-2 hover:bg-gray-100"
           >
