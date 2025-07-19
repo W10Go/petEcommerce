@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   images: {
     domains: [
       "tse1.mm.bing.net", // Add any other domains you need here
+      "kanu.pet",
     ],
   },
 };

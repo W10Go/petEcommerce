@@ -1,11 +1,12 @@
 "use client";
-//import { createSupabaseBrowserClient } from "@/app/components/lib/supabase";
+import Link from "next/link";
 
-export function AuthButton() {
+export default function SignUpButton() {
   return (
-    <>
-      <div></div>
-      <div></div>
-    </>
+    <Link href="/register">
+      <button className="px-4 py-1 bg-amber-700 text-white rounded hover:bg-amber-800 transition">
+        Registrarse
+      </button>
+    </Link>
   );
 }
