@@ -9,7 +9,7 @@ type User = {
 };
 
 export default function AddItemsButton() {
-  const [user, setUser] = useState<User | null>();
+  const [user, setUser] = useState<User | null>(null);
   const supabase = createSupabaseBrowserClient();
   useEffect(() => {
     const fetchUser = async () => {

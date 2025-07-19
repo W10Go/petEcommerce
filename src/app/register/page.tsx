@@ -23,7 +23,8 @@ export default function Register() {
         email: email,
         password: password,
         options: {
-          emailRedirectTo: "http://localhost:3000/auth/callback",
+          emailRedirectTo:
+            "https://pet-ecommerce-w10gos-projects.vercel.app/auth/callback",
           data: {
             document_type: "1",
           },
