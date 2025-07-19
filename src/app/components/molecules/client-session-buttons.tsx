@@ -1,6 +1,5 @@
 "use client";
 import { User } from "@supabase/supabase-js";
-import SignOutButton from "../atoms/signout-button";
 import SignInButton from "../atoms/signin-button";
 import SignUpButton from "../atoms/signup-button";
 import OptionNoLoginButton from "./option-no-login-butons";
