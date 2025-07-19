@@ -3,14 +3,19 @@ import { useEffect, useState } from "react";
 import { useCart } from "../context/CartContext";
 import { redirectTo } from "../lib/navigation";
 import { createSupabaseBrowserClient } from "../lib/supabase-browser";
+import {
+  type Product,
+  type User,
+  type Shopping_cart,
+} from "../types/shopTypes";
 
 export default function CartList() {
   const { cart, clearCart } = useCart();
   const [invoice, setInvoice] = useState(false);
-  const [cartInvoice, setCartInvoice] = useState();
-  const [user, setUser] = useState(null);
+  const [cartInvoice, setCartInvoice] = useState<Shopping_cart>();
+  const [user, setUser] = useState<User | null>(null);
   const [total, setTotal] = useState(0);
-  const [cartToShow, setCartToShow] = useState();
+  const [cartToShow, setCartToShow] = useState<Product[]>([]);
 
   useEffect(() => {
     setTotal(
@@ -72,8 +77,8 @@ export default function CartList() {
       console.error("Error inserting cart products:", insertError);
       return;
     }
-    setCartToShow([...cart]);
-    clearCart();
+    setCartToShow([...(cart ?? [])]);
+    clearCart?.();
     setInvoice(true);
 
     if (insertData) {
@@ -149,25 +154,22 @@ export default function CartList() {
           {cartToShow?.length === 0 && (
             <p className="text-gray-500">Tu carrito está vacío.</p>
           )}
-          {
-            // @ts-expect-error Type 'number' is not assignable to type 'never'
-            cartToShow?.length > 0 && (
-              <section className="flex gap-5 justify-center items-center">
-                <button
-                  onClick={handlePayment}
-                  className="mt-4 px-6 py-2 bg-amber-700 text-white rounded hover:bg-amber-800 transition"
-                >
-                  Proceder al pago
-                </button>
-                <button
-                  onClick={clearCart}
-                  className="mt-4 px-6 py-2 bg-red-700 text-white rounded hover:bg-red-800 transition"
-                >
-                  Vaciar carrito
-                </button>
-              </section>
-            )
-          }
+          {cartToShow?.length > 0 && (
+            <section className="flex gap-5 justify-center items-center">
+              <button
+                onClick={handlePayment}
+                className="mt-4 px-6 py-2 bg-amber-700 text-white rounded hover:bg-amber-800 transition"
+              >
+                Proceder al pago
+              </button>
+              <button
+                onClick={clearCart}
+                className="mt-4 px-6 py-2 bg-red-700 text-white rounded hover:bg-red-800 transition"
+              >
+                Vaciar carrito
+              </button>
+            </section>
+          )}
         </div>
       )}
     </div>

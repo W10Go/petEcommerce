@@ -13,3 +13,14 @@ export type CartContextType = {
   addToCart?: (product: Product) => void;
   clearCart?: () => void;
 };
+
+export type User = {
+  first_name: string;
+  user_role: string;
+};
+
+export type Shopping_cart = {
+  id: number;
+  user_id: number;
+  created_at: string;
+};

@@ -6,8 +6,8 @@ import { createSupabaseBrowserClient } from "../lib/supabase-browser";
 export default function AddItems() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState();
-  const [quantity, setQuantity] = useState();
+  const [price, setPrice] = useState<number>();
+  const [quantity, setQuantity] = useState<number>();
   const [imgUrl, setImgUrl] = useState("");
   const [message, setMessage] = useState("");
   const handleSubmit = async (e: React.FormEvent) => {
@@ -28,6 +28,11 @@ export default function AddItems() {
       },
     ]);
     console.error(error);
+  };
+
+  const handlePriceInput = (e: React.FormEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setPrice(Number(e.currentTarget.value)); // ✅ currentTarget is typed correctly
   };
   return (
     <main className="flex items-center justify-center  min-h-screen bg-amber-50">
@@ -63,7 +68,7 @@ export default function AddItems() {
             $
             <input
               type="number"
-              onChange={(e) => setPrice(Number(e.target.value))}
+              onChange={handlePriceInput}
               value={price}
               className="mb-7 px-4 py-2 w-100 border-b"
             />

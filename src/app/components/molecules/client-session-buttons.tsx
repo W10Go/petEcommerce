@@ -12,7 +12,7 @@ export default function ClientSessionButtons({
 }: {
   readonly session: User | null;
 }) {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState<User | null>();
   const supabase = createSupabaseBrowserClient();
 
   useEffect(() => {
