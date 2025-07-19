@@ -18,16 +18,20 @@ export default function ClientSessionButtons({
     const supabase = createSupabaseBrowserClient();
 
     const fetchUser = async () => {
-      const { data } = await supabase
-        .from("users")
-        .select("*")
-        .eq("id", session?.id)
-        .single();
+      console.log(session);
 
-      setUser(data);
+      if (session !== null) {
+        const { data } = await supabase
+          .from("users")
+          .select("*")
+          .eq("id", session?.id)
+          .single();
+
+        setUser(data);
+      }
     };
     fetchUser();
-  }, [session?.id]);
+  }, [session]);
   return (
     <>
       {session ? (
